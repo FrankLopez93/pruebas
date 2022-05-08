@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registro de usuarios</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/ventas.css">
 </head>
@@ -57,11 +58,37 @@
             </div><br>
             <div class="row">
                 <div class="col">
+                    <label>Eliga rol del usuario</label>
+                    <div class="col">
+                        <select class="form-control" name="rol" id="rol"></select>
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col">
                     <button type="submit" class="btn btn-primary btn-lg">Registrar</button>
                 </div>
             </div>
         </div>
     </form>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "../php/selectRol.php",
+                type: "POST",
+                success: (roles) => {
+                    console.log(roles);
+                    $("#rol").append(roles);
+                },
+                error: (xhr, status, error) => {
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(error);
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

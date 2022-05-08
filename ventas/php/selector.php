@@ -7,9 +7,8 @@ $sql = "SELECT id, CONCAT(nombre, ' ' , ap_paterno, ' ', ap_materno) AS Nombre
 
 $result = mysqli_query($con, $sql);
 if ($result) {
-    $row = mysqli_fetch_array($result);
     echo "<option value='0'>Seleccionar</option>";
-    while ($row != null) {
+    while (($row = mysqli_fetch_array($result)) != null) {
         echo "<option value='". $row["id"] ."'>". $row["Nombre"] ."</option>";
     }
 }else{

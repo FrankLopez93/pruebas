@@ -11,7 +11,22 @@
 <body>
     <div>
         <label>Selecciona un nombre</label>
-        <select name="users" id="users"></select>
+        <input type="text" list="users" id="users-input" name="users">
+        <datalist id="users"></datalist>
+        <!-- <select name="users" id="users"></select> -->
+    </div><br>
+
+    <div>
+        <label>Selecciona un producto</label>
+        <input list="productos" id="products" name="products">
+        <datalist id="productos">
+            <option value="abanico">
+            <option value="abaco">
+            <option value="abecedario">
+            <option value="alcancía">
+            <option value="barquito">
+            <option value="banquito">
+        </datalist>
     </div>
 
     <script>

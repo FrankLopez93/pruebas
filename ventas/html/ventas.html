@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de usuarios</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">    <link rel="stylesheet" href="../css/ventas.css">
+</head>
+
+<body>
+    <div>
+        <h1 id="title">REGISTRO DE USUARIOS</h1>
+    </div>
+    <form action="../php/insertUsuarios.php" method="POST" id="users-form">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <label>Nombre(s)</label>
+                    <input class="form-control" type="text" name="nombre" id="nombre" aria-label="default">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>Apellido paterno</label>
+                    <input class="form-control" type="text" name="apPaterno" id="apPaterno" aria-label="default">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>Apellido materno</label>
+                    <input class="form-control" type="text" name="apMaterno" id="apMaterno" aria-label="default">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>email</label>
+                    <input class="form-control" type="email" name="email" id="email" aria-label="default">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>Teléfono</label>
+                    <input class="form-control" type="text" name="telefono" id="telefono" aria-label="default">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>Celular</label>
+                    <input class="form-control" type="text" name="celular" id="celular" aria-label="default">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>Eliga rol del usuario</label>
+                    <select class="form-control" name="rol" id="rol"></select>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary btn-lg">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "../php/selectRol.php",
+                type: "POST",
+                success: (roles) => {
+                    console.log(roles);
+                    $("#rol").append(roles);
+                },
+                error: (xhr, status, error) => {
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(error);
+                }
+            });
+        });
+
+        $("#users-form").validate({
+            rules:{
+                nombre: {
+                    required: true
+                },
+                apPaterno: {
+                    required: true
+                },
+                telefono: {
+                    required: true
+                },
+                rol: {
+                    required: true
+                }
+
+            },
+            messages:{
+                nombre:{
+                    required: "Ingresa un nombre"
+                },
+                apPaterno: {
+                    required: "Ingresa el apellido"
+                },
+                telefono: {
+                    required: "Ingresa un teléfono"
+                },
+                rol: {
+                    required: "Elige un rol de usuario"
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

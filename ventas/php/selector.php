@@ -3,7 +3,8 @@ require("conexion.php");
 $con = mysqli_connect($servidor, $usuario, $contrasena, $bd);
 
 $sql = "SELECT id, CONCAT(nombre, ' ' , ap_paterno, ' ', ap_materno) AS Nombre
-        FROM usuarios";
+        FROM usuarios
+        ORDER BY Nombre";
 
 $result = mysqli_query($con, $sql);
 if ($result) {
